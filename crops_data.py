@@ -17,6 +17,12 @@
 # curves using growing degree days (GDD): Application of the revised FAO56
 # guidelines." Agricultural Water Management, 319, 109758.
 #
+# Notes on crop variants used in this database:
+#
+# Crop season variants (short, long, market, industry, common) are used to
+# distinguish phenological differences in cumulative GDD reported in the
+# literature for the same crop under different season-length or use conditions.
+#
 # Source tables:
 #   - Tbase and Tupper: Tables 1–2
 #   - Cumulative GDD for phenological stages: Table 5

@@ -6,24 +6,24 @@
 
 ## Project Description
 
-<div style="text-align: justify;">
-  <p style="text-indent: 0.5in;">
+<div>
+  <p style="text-indent: 0.5in;  text-align: justify;">
     This project implements a Python-based tool to compute the growing degree days (GDD) and determine the current crop growth stage (phenology) for selected vegetable and field crops. The model uses daily air temperature data retrieved from the Open-Meteo API and applies crop-specific thermal thresholds derived from the revised FAO56 guidelines (FAO56rev).
   </p>
 
-  <p style="text-indent: 0.5in;">
+  <p style="text-indent: 0.5in; text-align: justify; ">
     Unlike cropping calendar-based approaches, this project estimates crop development using cumulative thermal time, providing a biologically meaningful representation of crop growth.
   </p>
 </div>
 
 ### Growing Degree Days (GDD)
 
-<div style="text-align: justify;">
-  <p style="text-indent: 0.5in;">
-    Growing Degree Days (GDD) represent the accumulated thermal time available for crop growth and development and are calculated using daily air temperature relative to crop-specific base and upper thresholds. Daily GDD values are defined as zero when the mean air temperature falls below the base temperature, increase linearly between the base and upper thresholds, and are capped when temperatures exceed the upper threshold to reflect saturation of crop development. By summing daily GDD from the planting date onward, cumulative GDD provides a biologically meaningful measure of crop progress that is independent of calendar time. In practice, cumulative GDD is widely used to estimate phenological stages, schedule management operations such as fertilization and pest control, and anticipate harvest timing under varying climatic conditions.
+<div>
+  <p style="text-indent: 0.5in; text-align: justify;">
+    Growing Degree Days (GDD) represent the accumulated thermal time available for crop growth and development and are calculated using daily air temperature relative to crop-specific base and upper thresholds. Daily GDD values are defined as zero when the mean air temperature falls below the base temperature, increase linearly b etween the base and upper thresholds, and are capped when temperatures exceed the upper threshold to reflect saturation of crop development. By summing daily GDD from the planting date onward, cumulative GDD provides a biologically meaningful measure of crop progress that is independent of calendar time. In practice, cumulative GDD is widely used to estimate phenological stages, schedule management operations such as fertilization and pest control, and anticipate harvest timing under varying climatic conditions.
   </p>
 
-  <p style="text-indent: 0.5in;">
+  <p style="text-indent: 0.5in; text-align: justify;">
     The Growing Degree Days (GDD) used in this project are computed using the piecewise temperature-threshold formulation shown in Equations&nbsp;1 and&nbsp;2 based on the works of Paredes et&nbsp;al.&nbsp;(2025). Equation&nbsp;1 defines daily GDD as a function of the mean air temperature relative to crop-specific base and upper temperature thresholds, while Equation&nbsp;2 defines the daily mean air temperature as the average of the daily maximum and minimum temperatures.
   </p>
 </div>

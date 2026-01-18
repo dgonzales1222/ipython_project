@@ -28,6 +28,7 @@
 </p>
 
 Equation 1
+
 $$
 \mathrm{GDD} =
 \begin{cases}

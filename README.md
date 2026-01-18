@@ -27,16 +27,25 @@
     The Growing Degree Days (GDD) used in this project are computed using the piecewise temperature-threshold formulation shown in Equations&nbsp;1 and&nbsp;2 based on the works of Paredes et&nbsp;al.&nbsp;(2025). Equation&nbsp;1 defines daily GDD as a function of the mean air temperature relative to crop-specific base and upper temperature thresholds, while Equation&nbsp;2 defines the daily mean air temperature as the average of the daily maximum and minimum temperatures.
 </p>
 
-Equation 1
+<table>
+<tr>
+<td>
 
 $$
-\mathrm{GDD} =
+GDD =
 \begin{cases}
-0, & T_{avg} < T_{base} \\
-T_{avg} - T_{base}, & T_{base} \le T_{avg} \le T_{upper} \\
-T_{upper} - T_{base}, & T_{avg} > T_{upper}
+0, & T_{\text{avg}} < T_{\text{base}} \\
+T_{\text{avg}} - T_{\text{base}}, & T_{\text{base}} \le T_{\text{avg}} \le T_{\text{upper}} \\
+T_{\text{upper}} - T_{\text{base}}, & T_{\text{avg}} > T_{\text{upper}}
 \end{cases}
 $$
+
+</td>
+<td style="text-align:right; vertical-align:middle;">
+(1)
+</td>
+</tr>
+</table>
 
 <br>
 Equation 2

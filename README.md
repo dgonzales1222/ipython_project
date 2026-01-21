@@ -107,7 +107,7 @@ The tests verify the correctness of the GDD calculation, phenological stage dete
 
 ### Limitations
 
-This program evaluates crop development only from the user-defined planting date up to the current date, using available historical temperature data to estimate cumulative Growing Degree Days (GDD) and the present phenological stage. As a result, the model is intended primarily as a tool for monitoring current-season crop performance rather than for full-season forecasting or yield prediction. 
+This program evaluates crop development only from the user-defined planting date up to the current date, using available historical temperature data to estimate cumulative Growing Degree Days (GDD) and the present phenological stage. As a result, the model is intended primarily as a tool for monitoring current-season crop performance rather than for full-season forecasting or yield prediction. The program is also limited to vegetables and field crops.
 
 ### References
 

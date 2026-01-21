@@ -10,6 +10,18 @@ This project implements a Python-based tool to compute the growing degree days (
 
 Unlike cropping calendar-based approaches, this project estimates crop development using cumulative thermal time, providing a biologically meaningful representation of crop growth.
 
+### Project File Structure
+
+- **`project.py`** – Main program file containing data retrieval from Open-Meteo, GDD computation, crop growth stage estimation, visualization, and the `CropSeason` class.
+
+- **`crops_data.py`** – Defines crop-specific thermal parameters and cumulative GDD thresholds for phenological stages.
+
+- **`test_project.py`** – Implements unit tests using `pytest` to verify GDD calculations, growth stage logic, class behavior, and error handling.
+
+- **`requirements.txt`** – Lists all Python dependencies required to run the project.
+
+- **`README.md`** – Provides project background, methodology, workflow, inputs and outputs, limitations, future work, and references.
+
 ### Growing Degree Days (GDD)
 
 Growing Degree Days (GDD) quantify accumulated thermal time for crop growth using daily air temperature relative to crop-specific base and upper thresholds. Daily GDD values are zero below the base temperature, increase linearly between thresholds, and are capped above the upper threshold. Cumulative GDD from planting indicates crop progress independent of calendar time and is used to estimate phenological stages, schedule management operations, and predict harvest timing.
@@ -62,7 +74,7 @@ The program's overall workflow is illustrated in Figure 2. The process begins wi
 *Flowchart of GDD-Based Crop Season Modeling*<br>
 ![program_workflow](./images/program_workflow.png)
 
-### Inputs
+#### Inputs
 1. `crop_id` - identifies the crop to be modeled and determines the crop-specific temperature requirements as well as cumulative GDD thresholds used for phenological stage estimation.
 2. `location` - descriptive name used for labeling outputs and saved figures.
 3. `latitude` - specifies the north-south position of the field location and is required for retrieving temperature data from Open-Meteo.
@@ -73,7 +85,7 @@ The program's overall workflow is illustrated in Figure 2. The process begins wi
 *Example Input*<br>
 <img src="./images/input_sample.png" width="600">
 
-### Outputs and Visualization
+#### Outputs and Visualization
 
 The program produces two types of outputs:
 1. The first one is the **textual summary** showing the current date, crop type, location, cumulative GDD, estimated growth stage, and progress within the stage.<br><br>
@@ -88,7 +100,7 @@ The program produces two types of outputs:
 *Example GDD Progress Plot Output*<br>
 <img src="./images/2026-01-21_lettuce_short_Benguet.png" width="600">
 
-### Testing
+#### Testing
 
 Unit tests were implemented using `pytest` and are located in `test_project.py`.  
 The tests verify the correctness of the GDD calculation, phenological stage determination, `CropSeason` class behavior, and error handling for invalid inputs.

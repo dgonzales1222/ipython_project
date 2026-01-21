@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from crops_data import crops 
 
+# Fetch daily temperature data using Open-Meteo API
 def fetch_daily_temp(latitude, longitude, start_date, end_date):
     url = "https://archive-api.open-meteo.com/v1/archive"
     params = {
@@ -37,6 +38,7 @@ def fetch_daily_temp(latitude, longitude, start_date, end_date):
 
     return df
 
+# Compute the daily growing degree days (GDD)
 def compute_daily_gdd(tmin, tmax, t_base, t_upper):
     t_avg = (tmin + tmax) / 2.0
 
@@ -46,6 +48,7 @@ def compute_daily_gdd(tmin, tmax, t_base, t_upper):
         return t_upper - t_base
     return t_avg - t_base
 
+# Determine the Growing Stage of the CropSeason based on the current CGDD
 def determine_growing_stage(cumulative_gdd, stages_cumulative):
     initial = stages_cumulative["initial"]
     development = stages_cumulative["development"]
@@ -76,6 +79,7 @@ def determine_growing_stage(cumulative_gdd, stages_cumulative):
     progress = max(0.0, min(1.0, progress))
     return stage, progress
 
+# Build a dataframe of historical temperature data for visualization (relplot)
 def build_historical_gdd_dataframe(
     latitude,
     longitude,
@@ -125,6 +129,7 @@ def build_historical_gdd_dataframe(
 
     return pd.DataFrame.from_records(records)
 
+# Visualize cumulative GDD with ideal gdd line and historical gdd line.
 def plot_gdd_progress(season, latitude, longitude):
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
@@ -211,8 +216,9 @@ def plot_gdd_progress(season, latitude, longitude):
 
     print(f"Saved plot to: {filepath}")
 
-
+# Create CropSeason class
 class CropSeason:
+    # Initialize CropSeason
     def __init__(self, crop_id, planting_date, weather_series, location):
         if crop_id not in crops:
             raise ValueError(f"Unsupported crop_id: {crop_id}")
@@ -225,24 +231,24 @@ class CropSeason:
         self.params = crops[crop_id]
         self.planting_date = planting_date
 
-        # Keep only rows on or after planting_date
         weather_df = weather_series.copy()
         weather_df = weather_df[weather_df["date"].dt.date >= planting_date]
         weather_df = weather_df.sort_values("date").reset_index(drop=True)
 
         self.weather = weather_df
 
+    # Compute gdd time series (from planting date to current date)
     def compute_gdd_series(self):
         t_base = self.params["t_base"]
         t_upper = self.params["t_upper"]
 
-        # Compute daily GDD using the scalar helper for clarity
         self.weather["daily_gdd"] = self.weather.apply(
             lambda row: compute_daily_gdd(row["tmin"], row["tmax"], t_base, t_upper),
             axis=1,
         )
         self.weather["cumulative_gdd"] = self.weather["daily_gdd"].cumsum()
 
+    # Get current crop stage based on the given date
     def stage_on_date(self, target_date):
         if "cumulative_gdd" not in self.weather.columns:
             self.compute_gdd_series()
@@ -258,6 +264,7 @@ class CropSeason:
         )
         return stage, progress, cumulative_gdd
 
+    # Generate the current summary of the cropping season
     def summary_today(self):
         if self.weather.empty:
             return {
@@ -292,7 +299,7 @@ class CropSeason:
             "overall_progress": overall_progress,
         }
     
-
+# Main program execution
 def main():
 
     crop_id = input("\nEnter crop_id: ").strip()
@@ -346,5 +353,6 @@ def main():
     if save_plot == "y":
         plot_gdd_progress(season, latitude, longitude)
 
+# Runs the main program when the script is executed directly
 if __name__ == "__main__":
     main()

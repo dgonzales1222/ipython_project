@@ -20,7 +20,7 @@ def test_compute_daily_gdd():
 
 
 
-def test_determine_growing_stage_boundaries():
+def test_determine_growing_stage():
 
     # Define representative cumulative GDD thresholds for each crop growth stage.
     stages = {"initial": 100.0, "development": 200.0, "mid_season": 300.0, "harvest": 400.0}

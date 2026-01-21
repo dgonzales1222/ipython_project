@@ -20,7 +20,7 @@ Unlike cropping calendar-based approaches, this project estimates crop developme
 
 - **`requirements.txt`** – Lists all Python dependencies required to run the project.
 
-- **`README.md`** – Provides project background, methodology, workflow, inputs and outputs, limitations, future work, and references.
+- **`README.md`** – Provides project background, methodology, workflow, inputs and outputs, limitations, and references.
 
 ### Growing Degree Days (GDD)
 

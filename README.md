@@ -55,6 +55,27 @@ The FAO-56 framework defines crop development as a sequence of four generalized 
 ### Weather Data Source
 Open-Meteo is an open-access weather API that provides historical and forecast data (Zippenfenig, 2023). This program uses Open-Meteo to obtain daily minimum and maximum air temperatures for a specified location. These temperatures are used to calculate GDD and estimate crop growth stages.
 
+### Inputs
+1. `crop_id` - identifies the crop to be modeled and determines the crop-specific temperature requirements as well as cumulative GDD thresholds used for phenological stage estimation.
+2. `location` - descriptive name used for labeling outputs and saved figures.
+3. `latitude` - specifies the north-south positon of the field location and is required for retrieiving temperature data from Open-Meteo.
+4. `longitude` - specifies the east-west positon of the field location and is required for retrieiving temperature data from Open-Meteo.
+5. `planting_date` - Defines the start of the growing season and serves as the reference date for accumulating daily and cumulative GDD.
+
+**Figure 2** <br>
+*Example Input*<br>
+
+### Outputs and Visualization
+
+The program produces two types of outputs:
+1. The first one is the **textual summary** showing the current date, crop type, location, cumulative GDD, estimated growth stage, and progress within the stage.<br><br>
+**Figure 3** <br>
+*Example Textual Summary Output*<br>
+
+2. The second output is the **GDD Progress Plot**. When selected by the user or if he or she types "y" when the prompt comes, the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br><br>
+**Figure 4** <br>
+*Example GDD Progress Plot Output*<br>
+
 ### References
 
 Paredes, P., López-Urrea, R., Martínez-Romero, Á., Petry, M., do Rosário Cameira, M., Montoya, F., … Pereira, L. S. (2025). Estimating the lengths of crop growth stages to define the crop coefficient curves using growing degree days (GDD): Application of the revised FAO56 guidelines. *Agricultural Water Management*, 319, 109758. [doi:10.1016/j.agwat.2025.109758](https://doi.org/10.1016/j.agwat.2025.109758)

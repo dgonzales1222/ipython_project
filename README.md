@@ -12,24 +12,11 @@ Unlike cropping calendar-based approaches, this project estimates crop developme
 
 ### Growing Degree Days (GDD)
 
-Growing Degree Days (GDD) represent the accumulated thermal time available for crop growth and development and are calculated using daily air temperature relative to crop-specific base and upper thresholds. Daily GDD values are defined as zero when the mean air temperature falls below the base temperature, increase linearly b etween the base and upper thresholds, and are capped when temperatures exceed the upper threshold to reflect saturation of crop development. By summing daily GDD from the planting date onward, cumulative GDD provides a biologically meaningful measure of crop progress that is independent of calendar time. In practice, cumulative GDD is widely used to estimate phenological stages, schedule management operations such as fertilization and pest control, and anticipate harvest timing under varying climatic conditions.
+Growing Degree Days (GDD) quantify accumulated thermal time for crop growth using daily air temperature relative to crop-specific base and upper thresholds. Daily GDD values are zero below the base temperature, increase linearly between thresholds, and are capped above the upper threshold. Cumulative GDD from planting indicates crop progress independent of calendar time and is used to estimate phenological stages, schedule management operations, and predict harvest timing.
 
-The Growing Degree Days (GDD) used in this project are computed using the piecewise temperature-threshold formulation shown in Equations 1 and 2 based on the works of Paredes et al. (2025). Equation 1 defines daily GDD as a function of the mean air temperature relative to crop-specific base and upper temperature thresholds, while Equation 2 defines the daily mean air temperature as the average of the daily maximum and minimum temperatures.
+GDD are calculated using a piecewise temperature-threshold approach (Paredes et al., 2025). Equation 1 expresses daily GDD as a function of mean air temperature relative to crop-specific base and upper thresholds. Equation 2 defines mean air temperature as the average of daily maximum and minimum temperatures.
 
-$$
-\mathrm{GDD} =
-\begin{cases}
-0, & T_{avg} < T_{base} \\
-T_{avg} - T_{base}, & T_{base} \le T_{avg} \le T_{upper} \\
-T_{upper} - T_{base}, & T_{avg} > T_{upper}
-\end{cases}\;\;\;\;\;\;\;\;(1)
-$$
-
-<br>
-
-$$
-T_{avg} = \frac{T_{max} + T_{min}}{2}\;\;\;\;\;\;\;\;(2)
-$$
+![eq_1_2](./images/equations_gdd-2.png)
 
 **where:**
 
@@ -45,9 +32,7 @@ While daily GDD values describe short-term thermal accumulation, crop developmen
 
 
 
-$$
-\mathrm{CGDD} = \sum_{i=1}^{n} \mathrm{GDD}_i\;\;\;\;\;\;\;\;(3)
-$$
+![equation_3](./images/equation_3.png)
 
 **where:**
 
@@ -67,7 +52,8 @@ The FAO-56 framework defines crop development as a sequence of four generalized 
 *FAO-56 Crop Growth Stage*<br>
 ![Crop](./images/crop_growth_stage.png)
 
-
+### Weather Data Source
+Open-Meteo is an open-access weather API that provides historical and forecast data (Zippenfenig, 2023). This program uses Open-Meteo to obtain daily minimum and maximum air temperatures for a specified location. These temperatures are used to calculate GDD and estimate crop growth stages.
 
 ### References
 

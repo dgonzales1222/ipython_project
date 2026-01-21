@@ -156,12 +156,12 @@ def plot_gdd_progress(season, latitude, longitude):
 
     if not hist_df.empty:
         g = sns.relplot(
-            data=hist_df,
-            x="day",
-            y="cgdd",
-            kind="line",
-            ci="sd",
-            linewidth=1,
+        data=hist_df,
+        x="day",
+        y="cgdd",
+        kind="line",
+        errorbar="sd",
+        linewidth=1,
         )
         ax = g.axes[0, 0]
 

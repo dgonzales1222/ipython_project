@@ -33,7 +33,6 @@ def test_determine_growing_stage_boundaries():
     stage_post, progress_post = determine_growing_stage(450.0, stages)
 
     # Assert correct stage labels and ensure progress values remain within valid bounds (0 to 1).
-
     assert stage_init == "initial"
     assert 0.0 <= progress_init <= 1.0
 
@@ -80,6 +79,7 @@ def build_test_season():
 def test_cropseason_gdd():
     season, tmin, tmax = build_test_season()
 
+    # Verify that GDD-related columns are created and correct.
     assert "daily_gdd" in season.weather.columns
     assert "cumulative_gdd" in season.weather.columns
     assert len(season.weather) == 5
@@ -87,9 +87,26 @@ def test_cropseason_gdd():
 def test_cropseason_summary():
     season, tmin, tmax = build_test_season()
 
+    # Valdiate the integrity and bounds of the season summary and phenological growth stage.
     summary = season.summary_today()
     assert summary["crop_id"] == "test_crop"
     assert summary["stage"] in {"initial", "development", "mid_season", "harvest", "post_harvest"}
     assert 0.0 <= summary["stage_progress"] <= 1.0
     assert 0.0 <= summary["overall_progress"] <= 1.0
 
+
+def test_init():
+    dates = pd.date_range("2025-01-01", periods=3, freq="D")
+    weather_df = pd.DataFrame(
+        {"date": dates, "tmin": [10.0, 10.0, 10.0], "tmax": [20.0, 20.0, 20.0]}
+    )
+    planting_date = dt.date(2025, 1, 1)
+
+    # If crop_id is not in crops_data
+
+    with pytest.raises(ValueError):
+        CropSeason("invalid_crop", planting_date, weather_df, "TestLocation")
+
+    # Invalid weather input
+    with pytest.raises(TypeError):
+        CropSeason("test_crop", planting_date, "not_a_dataframe", "TestLocation")

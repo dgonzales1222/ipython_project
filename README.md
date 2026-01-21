@@ -65,8 +65,8 @@ The program's overall workflow is illustrated in Figure 2. The process begins wi
 ### Inputs
 1. `crop_id` - identifies the crop to be modeled and determines the crop-specific temperature requirements as well as cumulative GDD thresholds used for phenological stage estimation.
 2. `location` - descriptive name used for labeling outputs and saved figures.
-3. `latitude` - specifies the north-south position of the field location and is required for retrieiving temperature data from Open-Meteo.
-4. `longitude` - specifies the east-west position of the field location and is required for retrving temperature data from Open-Meteo.
+3. `latitude` - specifies the north-south position of the field location and is required for retrieving temperature data from Open-Meteo.
+4. `longitude` - specifies the east-west position of the field location and is required for retrieving temperature data from Open-Meteo.
 5. `planting_date` - Defines the start of the growing season and serves as the reference date for accumulating daily and cumulative GDD.
 
 **Figure 3** <br>
@@ -92,6 +92,10 @@ The program produces two types of outputs:
 
 Unit tests were implemented using `pytest` and are located in `test_project.py`.  
 The tests verify the correctness of the GDD calculation, phenological stage determination, `CropSeason` class behavior, and error handling for invalid inputs.
+
+### Limitations
+
+This program evaluates crop development only from the user-defined planting date up to the current date, using available historical temperature data to estimate cumulative Growing Degree Days (GDD) and the present phenological stage. As a result, the model is intended primarily as a tool for monitoring current-season crop performance rather than for full-season forecasting or yield prediction. 
 
 ### References
 

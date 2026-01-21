@@ -1,3 +1,4 @@
+import pytest
 import datetime as dt
 import pandas as pd
 from project import compute_daily_gdd, determine_growing_stage, CropSeason, crops
@@ -77,9 +78,18 @@ def build_test_season():
     return season, tmin, tmax
 
 def test_cropseason_gdd():
-    season, tmin, tmax = _build_test_season()
+    season, tmin, tmax = build_test_season()
 
     assert "daily_gdd" in season.weather.columns
     assert "cumulative_gdd" in season.weather.columns
     assert len(season.weather) == 5
+
+def test_cropseason_summary():
+    season, tmin, tmax = build_test_season()
+
+    summary = season.summary_today()
+    assert summary["crop_id"] == "test_crop"
+    assert summary["stage"] in {"initial", "development", "mid_season", "harvest", "post_harvest"}
+    assert 0.0 <= summary["stage_progress"] <= 1.0
+    assert 0.0 <= summary["overall_progress"] <= 1.0
 

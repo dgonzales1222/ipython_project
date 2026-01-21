@@ -62,8 +62,6 @@ The program's overall workflow is illustrated in Figure 2. The process begins wi
 *Flowchart of GDD-Based Crop Season Modeling*<br>
 ![program_workflow](./images/program_workflow.png)
 
-
-
 ### Inputs
 1. `crop_id` - identifies the crop to be modeled and determines the crop-specific temperature requirements as well as cumulative GDD thresholds used for phenological stage estimation.
 2. `location` - descriptive name used for labeling outputs and saved figures.
@@ -79,10 +77,12 @@ The program's overall workflow is illustrated in Figure 2. The process begins wi
 
 The program produces two types of outputs:
 1. The first one is the **textual summary** showing the current date, crop type, location, cumulative GDD, estimated growth stage, and progress within the stage.<br><br>
+
 **Figure 4** <br>
 *Example Textual Summary Output*<br>
 <img src="./images/summary_sample.png" width="600">
-2. The second output is the **GDD Progress Plot**. When selected by the user (by responding “y” to the prompt), the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br><br>
+2. The second output is the **GDD Progress Plot**. When selected by the user (by responding “y” to the prompt), the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br>
+
 **Figure 5** <br>
 *Example GDD Progress Plot Output*<br>
 <img src="./images/2026-01-21_lettuce_short_Benguet.png" width="600">

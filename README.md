@@ -85,7 +85,7 @@ The program produces two types of outputs:
 2. The second output is the **GDD Progress Plot**. When selected by the user (by responding “y” to the prompt), the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br><br>
 **Figure 5** <br>
 *Example GDD Progress Plot Output*<br>
-<img src="./images/2026-01-21_lettuce_short_La_Trinidad,_Benguet.png" width="600">
+<img src="./images/2026-01-21_lettuce_short_Benguet.png" width="600">
 
 ### Testing
 

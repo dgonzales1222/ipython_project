@@ -41,7 +41,6 @@ While daily GDD values describe short-term thermal accumulation, crop developmen
 - **n** is the number of days elapsed since planting
 
 
-
 In this project, cumulative GDD is used as the primary indicator for estimating the progress of the current crop season. Because CGDD integrates the effects of daily temperature variability, it provides a more biologically consistent measure of crop development than calendar-based approaches, particularly under variable or changing climatic conditions.
 
 ### FAO-56 Crop Growth Stages
@@ -55,6 +54,16 @@ The FAO-56 framework defines crop development as a sequence of four generalized 
 ### Weather Data Source
 Open-Meteo is an open-access weather API that provides historical and forecast data (Zippenfenig, 2023). This program uses Open-Meteo to obtain daily minimum and maximum air temperatures for a specified location. These temperatures are used to calculate GDD and estimate crop growth stages.
 
+### Program Workflow Overview
+
+The program's overall workflow is illustrated in Figure 2. The process begins with user-provided inputs that define the crop type, location, and planting date. These inputs are validated before being used to retrieve daily temperature data from the Open-Meteo weather database. The retrieved weather data are then used to initialize a CropSeason object, within which daily and cumulative Growing Degree Days (GDD) are computed, and the current crop growth stage is determined. The program subsequently generates a visualization of GDD progression and prompts the user to save the plot, if desired. This workflow highlights the model's sequential structure, from data input and validation to computation, visualization, and output generation.
+
+**Figure 2** <br>
+*Flowchart of GDD-Based Crop Season Modeling*<br>
+![program_workflow](./images/program_workflow.png)
+
+
+
 ### Inputs
 1. `crop_id` - identifies the crop to be modeled and determines the crop-specific temperature requirements as well as cumulative GDD thresholds used for phenological stage estimation.
 2. `location` - descriptive name used for labeling outputs and saved figures.
@@ -62,19 +71,21 @@ Open-Meteo is an open-access weather API that provides historical and forecast d
 4. `longitude` - specifies the east-west positon of the field location and is required for retrieiving temperature data from Open-Meteo.
 5. `planting_date` - Defines the start of the growing season and serves as the reference date for accumulating daily and cumulative GDD.
 
-**Figure 2** <br>
+**Figure 3** <br>
 *Example Input*<br>
+![input_sample](./images/input_sample.png)
 
 ### Outputs and Visualization
 
 The program produces two types of outputs:
 1. The first one is the **textual summary** showing the current date, crop type, location, cumulative GDD, estimated growth stage, and progress within the stage.<br><br>
-**Figure 3** <br>
-*Example Textual Summary Output*<br>
-
-2. The second output is the **GDD Progress Plot**. When selected by the user or if he or she types "y" when the prompt comes, the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br><br>
 **Figure 4** <br>
+*Example Textual Summary Output*<br>
+![summary_sample](./images/summary_sample.png)
+2. The second output is the **GDD Progress Plot**. When selected by the user or if he or she types "y" when the prompt comes, the program generates a plot showing the historical cumulative GDD distribution based on Open-Meteo temperature data, an ideal GDD trajectory assuming optimal thermal conditions, and the actual cumulative GDD for the current season. <br><br>
+**Figure 5** <br>
 *Example GDD Progress Plot Output*<br>
+![sample_plot](./images/2026-01-21_lettuce_short_La_Trinidad,_Benguet.png)
 
 ### References
 
